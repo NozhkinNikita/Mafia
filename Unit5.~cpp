@@ -1,0 +1,93 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit5.h"
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm5 *Form5;
+//---------------------------------------------------------------------------
+__fastcall TForm5::TForm5(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm5::Button1Click(TObject *Sender)
+{
+
+Form5->Visible=false;
+
+
+
+
+String s;
+
+
+        String name=Form5->Edit1->Text;
+        String age=Form5->Edit2->Text;
+        String email=Form5->Edit3->Text;
+        String fb=Form5->Edit4->Text;
+        String vk=Form5->Edit5->Text;
+        String additional=Form5->Edit6->Text;
+
+        if (name=="") name='#';
+        if (age=="") age='#';
+        if (fb=="") fb='#';
+        if (vk=="") vk='#';
+        if (email=="") email='#';
+        if (additional=="") additional='#';
+
+
+
+
+
+
+
+
+    String s3, s4;
+    s3 = Form1->id;
+    s3 = s3 + ' ';
+    s3 = s3 + SAVE_SETTINGS+' '+name+' '+age+' '+email+' '+fb+' '+vk+' '+additional;
+
+
+    //ShowMessage(s3);
+    s3 = " " + s3;
+    int a = s3.Length();
+    if (a == 9)
+    { a = 11; } else
+    if (a==98)
+    a=101 else
+    {
+        if (a < 9)
+        { a++; } else
+        if (a>100)
+        a = a + 3;else
+        { a = a + 2; }
+    }
+
+    String s1 = a;
+    s3 = s1 + s3;
+
+    Form1->ClientSocket1->Socket->SendText(s3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+//---------------------------------------------------------------------------
